@@ -1,0 +1,36 @@
+.image-wrapper{
+    height: 480px;
+    width: 350px;
+}
+
+.comment{
+   width: 40%;
+    margin-top: 10px;
+}
+
+.logo-wrapper{
+  float: left;
+  margin-right: 10px;
+}
+
+.btn-wrapper{
+  float: left;
+  margin-right: 10px;
+}
+
+.btn-search-wrapper{
+  margin-top: 20px;
+  float: left;
+  margin-right: 10px;
+}
+
+.search-field{
+  float: left;
+  margin-right: 10px;
+}
+
+.search-wrapper{
+  float: left;
+  margin-right: 10px;
+}
+
