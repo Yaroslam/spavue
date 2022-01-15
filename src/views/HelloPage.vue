@@ -1,5 +1,6 @@
 <template>
     <div class="u-body">
+      <NavigationBar/>
     <section class="u-clearfix u-valign-bottom-sm u-section-1" id="carousel_fcdc">
       <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
         <div class="u-gutter-0 u-layout">
@@ -41,15 +42,19 @@
 
 <script>
 import ArticlesSlider from '@/components/ArticlesSlider'
+import NavigationBar from '@/components/NavigationBar'
 
 export default {
   name: 'HelloPage',
   components: {
-    ArticlesSlider,}
+    ArticlesSlider,
+    NavigationBar,
+  }
 };
 </script>
 
 <style>
 @import '../assets/HelloPage.css';
 @import '../assets/nicepage.css';
+@import '../assets/styles.css';
 </style>

@@ -4,11 +4,11 @@
     <div>
       <div>
         <div>
-          <img class="image" :alt="character.name" :src="`../${character.full_image}`">
-          <h2>{{ character.name }}</h2>
-            <div class="date">{{ character.date }}</div>
+          <img class="image" :alt="article.name" :src="`../${article.full_image}`">
+          <h2>{{ article.name }}</h2>
+            <div class="date">{{ article.date }}</div>
           <div>
-            {{ character.desc }}
+            {{ article.desc }}
           </div>
         </div>
       </div>
@@ -19,9 +19,9 @@
 
 <script>
 export default {
-  name: 'SingleCharacterBlock',
+  name: 'SingleArticleBlock',
   props: {
-    character: {
+    article: {
       type: Object,
       required: true,
     },

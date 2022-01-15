@@ -2,9 +2,9 @@
   <div>
   <v-carousel>
     <v-carousel-item
-        v-for="character in charactersWithPreview"
-        :key="character.id"
-        :src="character.preview_image">
+        v-for="article in articlesWithPreview"
+        :key="article.id"
+        :src="article.preview_image">
     </v-carousel-item>
   </v-carousel>
 
@@ -15,12 +15,13 @@
 export default {
   name: "ArticlesSlider",
   created() {
-    this.characters = this.$store.dispatch('fetchCharactersWithPreview');
+    this.articles = this.$store.dispatch('fetchArticlesWithPreview');
   },
 
   computed: {
-    charactersWithPreview() {
-      return this.$store.state.charactersWithPreview;
+    articlesWithPreview() {
+      console.log(this.$store.state.articlesWithPreview)
+      return this.$store.state.articlesWithPreview;
     }
   },
 

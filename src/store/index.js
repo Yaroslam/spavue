@@ -5,20 +5,20 @@ import { ARTICLES, COMMENTS_TO_ARTICLE } from "@/api/router";
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default () => new Vuex.Store({
   state: {
     comments: [],
-    characters: [],
-    charactersWithPreview: [],
+    articles: [],
+    articlesWithPreview: [],
     pages: 0,
   },
   mutations: {
-    setCharacters(state, { characters }) {
-      state.characters = characters;
+    setArticles(state, { articles }) {
+      state.articles = articles;
     },
 
-    setCharactersWithPreview(state, { charactersWithPreview }) {
-      state.charactersWithPreview.push(charactersWithPreview);
+    setArticlesWithPreview(state, { articlesWithPreview }) {
+      state.articlesWithPreview = articlesWithPreview;
     },
 
     setPages(state, pages) {
@@ -26,7 +26,7 @@ export default new Vuex.Store({
     },
 
     setCommentsForArticle(state, { commentsForArticle }) {
-      state.comments.push(commentsForArticle);
+      state.comments = commentsForArticle;
     },
 
     setEmptyComments(state){
@@ -36,34 +36,32 @@ export default new Vuex.Store({
   },
 
   actions: {
-    fetchCharacters({commit}) {
+    fetchArticles({commit}) {
       return  fetch(ARTICLES).then((res) => res.json())
           .then((data) => {
-            commit('setCharacters', { characters: data });
-            console.log(data);
+            commit('setArticles', { articles: data });
           });
     },
 
-    fetchCharactersWithPreview({ commit }) {
+    fetchArticlesWithPreview({ commit }) {
       return fetch(ARTICLES).then((res) => res.json())
           .then((data) => {
+            let art_slide = []
+            console.log(data)
             data.forEach(function(i){
               if(i.slider) {
-                commit('setCharactersWithPreview', {charactersWithPreview: i});
+                art_slide.push(i);
               }
             });
+            commit('setArticlesWithPreview', {articlesWithPreview: art_slide})
           });
     },
 
     fetchCommentsForArticle({ commit }, id) {
       return fetch(COMMENTS_TO_ARTICLE(id)).then((res) => res.json())
           .then((data) => {
-            data.forEach(function(i){
-              if(i.article_id === id) {
-                commit('setCommentsForArticle', {commentsForArticle: i});
-              }
-            });
-           });
+            commit('setCommentsForArticle', {commentsForArticle: data});
+          });
     },
 
     clearComments({commit}) {
@@ -73,22 +71,23 @@ export default new Vuex.Store({
 
   },
   getters: {
-    getCharactersById: (state) => (id) => {
-      const pageCharacters = state.characters;
-      if (pageCharacters) {
-        return pageCharacters[id - 1];
+    getArticlesById: (state) => (id) => {
+      const pageArticles = state.articles;
+      if (pageArticles) {
+        return pageArticles[id - 1];
       }
     },
 
-    getCharactersByPage: (state) => (page) => state.characters[page],
+    getArticlesByPage: (state) => (page) => state.articles[page],
 
-    characterById() {
-      return this.$store.getters('getCharactersById');
+    ArticlesById() {
+      return this.$store.getters('getArticlesById');
     },
 
     getComments:( state ) => {
-      const pageComments = state.comments;
-      return pageComments;
+      console.log(state)
+      console.log(state.articles)
+      return state.comments;
     }
 
   },

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <span @click="detailedInfo" class="u-post-header-link" ><img alt="" width="350" height="350" :src="character.preview_image"></span>
-    <div>{{ character.shortDesc }}
+    <span @click="detailedInfo" class="u-post-header-link" ><img alt="" width="350" height="350" :src="article.preview_image"></span>
+    <div>{{ article.shortDesc }}
     </div>
     <span @click="detailedInfo" class="u-blog-control
     u-border-2 u-border-palette-1-base u-btn u-btn-rectangle
@@ -11,16 +11,16 @@
 
 <script>
 export default {
-  name: 'CharacterBloock',
+  name: 'ArticleBloock',
   props: {
-    character: {
+    article: {
       type: Object,
       required: true,
     },
   },
   methods: {
     detailedInfo() {
-      this.$router.push({ name: 'CharacterDetails', params: { id: this.character.id } });
+      this.$router.push({ name: 'ArticleDetails', params: { id: this.article.id } });
     },
   },
 };

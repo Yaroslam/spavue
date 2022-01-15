@@ -1,8 +1,9 @@
 import VueRouter from 'vue-router';
 import Vue from 'vue'
-import RickAndMortyList from '../views/RickAndMortyList';
-import RickAndMortyCharacter from '../views/RickAndMortyCharacter';
+import ArticleList from '../views/ArticleList';
 import HelloPage from '@/views/HelloPage.vue';
+import Article from "@/views/Article.vue";
+import Gallery from "@/views/Gallery.vue"
 
 Vue.use(VueRouter)
 
@@ -14,13 +15,19 @@ const routes = [
     },
     {
         path: '/articles',
-        name: 'RickAndMortyList',
-        component: RickAndMortyList,
+        name: 'ArticleList',
+        component: ArticleList,
     },
     {
         path: '/articles/:id',
-        name: 'CharacterDetails',
-        component: RickAndMortyCharacter,
+        name: 'ArticleDetails',
+        component: Article,
+    },
+    {
+        path: '/gallery',
+        name: 'Gallery',
+        component: Gallery,
+
     },
 ];
 

@@ -1,22 +1,23 @@
 <template>
 
   <div class="home">
-    <v-container v-for="(character, index) in characters"
-                 :key="character.id">
-            <v-row v-if="character.id % 3 === 1">
+    <NavigationBar/>
+    <v-container v-for="(article, index) in articles"
+                 :key="article.id">
+            <v-row v-if="article.id % 3 === 1">
               <v-col>
                 <v-card class="image-wrapper">
-                  <characterBloock  :character="characters[characters.length - (characters.length - index)]"/>
+                  <ArticleBloock :article="articles[articles.length - (articles.length - index)]"/>
                 </v-card>
               </v-col>
               <v-col>
                 <v-card class="image-wrapper">
-                  <characterBloock  :character="characters[characters.length - (characters.length - index)+1]"/>
+                  <ArticleBloock :article="articles[articles.length - (articles.length - index)+1]"/>
                 </v-card>
               </v-col>
               <v-col>
                 <v-card class="image-wrapper">
-                  <characterBloock  :character="characters[characters.length - (characters.length - index)+2]"/>
+                  <ArticleBloock :article="articles[articles.length - (articles.length - index)+2]"/>
                 </v-card>
               </v-col>
             </v-row>
@@ -27,23 +28,25 @@
       </template>
 
       <script>
-      import CharacterBloock from '@/components/CharacterBloock.vue';
+      import ArticleBloock from '@/components/ArticleBloock.vue';
+      import NavigationBar from '@/components/NavigationBar'
 
       export default {
-        name: 'RickAndMortyList',
-        components: { CharacterBloock },
+        name: 'ArticleList',
+        components: { ArticleBloock,
+          NavigationBar,},
         data() {
           return {
             currentPage: 1,
           };
         },
         created() {
-          this.$store.dispatch('fetchCharacters');
+          this.$store.dispatch('fetchArticles');
         },
 
         computed: {
-          characters() {
-            return this.$store.state.characters;
+          articles() {
+            return this.$store.state.articles;
           },
         },
       };

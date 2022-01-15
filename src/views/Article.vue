@@ -1,29 +1,32 @@
 <template>
   <div>
- <SingleCharacterBlock v-if="character" :character="character"/>
-  <comments-input :article_idef="character.id"  @review-submitted="addComment"></comments-input>
+    <NavigationBar/>
+ <SingleArticleBlock v-if="article" :article="article"/>
+  <comments-input :article_idef="article.id" @review-submitted="addComment"></comments-input>
   <CommentBlock :comments="comments"/>
   </div>
 </template>
 
 <script>
 
-import SingleCharacterBlock from '@/components/SingleCharacterBlock';
+import SingleArticleBlock from '@/components/SinglArticleBlock';
 import CommentBlock from "@/components/CommentBlock";
 import commentsInput from "@/components/commentsInput";
 import { COMMENTS_TO_ARTICLE } from "@/api/router";
+import NavigationBar from '@/components/NavigationBar'
 
 
 export default {
-  name: 'RickAndMortyCharacter',
+  name: 'Article',
   components: {
     commentsInput,
-    SingleCharacterBlock,
+    SingleArticleBlock,
     CommentBlock,
+    NavigationBar,
   },
   data() {
     return {
-      character: null,
+      article: null,
       comments: [],
     };
   },
@@ -31,7 +34,7 @@ export default {
     const { id } = this.$route.params;
     this.$store.dispatch('fetchCommentsForArticle', id);
     if (id) {
-      this.character = this.$store.getters.getCharactersById(id);
+      this.article = this.$store.getters.getArticlesById(id);
       this.comments = this.$store.getters.getComments;
     }
     this.$store.dispatch('clearComments',)
@@ -53,5 +56,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../assets/Blog-Template.css';
+@import '../assets/nicepage.css';
+@import '../assets/styles.css';
 </style>
